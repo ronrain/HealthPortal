@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Patient
-
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 
 
 def home(request):
@@ -17,6 +16,10 @@ def patient_index(request):
 def patient_detail(request, patient_id):
   patient = Patient.objects.get(id=patient_id)
   return render(request, 'patients/details.html', {'patient': patient})
+
+class PatientCreate(CreateView):
+  model = Patient
+  fields = '__all__'
 
 # # Add the Cat class & list and view function below the imports
 # class Patient:  # Note that parens are optional if not inheriting from another class
