@@ -21,8 +21,8 @@
   {% else %}
     <p>{{ patient.name }} is a {{ patient.race }} {{ patient.race }} born on {{ patient.birth_date }}</p>
   {% endif %}
-  <p>{{ patient.description }}</p>
   <p>{{ patient.medical_history }}</p>
+  <p>{{ patient.description }}</p>
   <div class="patient-actions">
     <a href="{% url 'patient-update' patient.id %}" class="btn warn">Edit</a>
     <a href="{% url 'patient-delete' patient.id %}" class="btn danger">Delete</a>
