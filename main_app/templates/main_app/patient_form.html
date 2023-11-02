@@ -6,9 +6,12 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="page-header">
+  {% if patient %}
+  <h1>Edit {{ patient.name }}</h1>
+  {% else %}
   <h1>Add a Patient</h1>
+  {% endif %}
+<div class="page-header">
   {% comment %} <img src="{% static '' %}" alt=""/> {% endcomment %}
 </div>
 <form action="" method="post" class="form-container">
