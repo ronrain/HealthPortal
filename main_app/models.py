@@ -7,3 +7,6 @@ class Patient(models.Model):
   birth_date = models.DateField()
   medical_history = models.TextField(max_length=250)
   description = models.TextField(max_length=250)
+
+  def __str__(self):
+    return self.name

@@ -18,18 +18,20 @@
 <section class="card-container">
   {% for patient in patients %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
+      <a href="/patients/{{ patient.id }}">
+        <div class="card-content">
+          <div class="card-img-container">
+          </div>
+          <h2 class="card-title">{{ patient.name }}</h2>
+          {% if patient.age > 0 %}
+            <p>{{ patient.name }} is a {{ patient.age }} year old {{ patient.race }} {{ patient.gender }} born on {{ patient.birth_date }}</p>
+          {% else %}
+            <p>{{ patient.name }} is a {{ patient.race }} {{ patient.race }} born on {{ patient.birth_date }}</p>
+          {% endif %}
+          <p><small>{{ patient.medical_history }}</small></p>
+          <p><small>{{ patient.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ patient.name }}</h2>
-        {% if patient.age > 0 %}
-          <p>{{ patient.name }} is a {{ patient.age }} year old {{ patient.race }} {{ patient.gender }} born on {{ patient.birth_date }}</p>
-        {% else %}
-          <p>{{ patient.name }} is a {{ patient.race }} {{ patient.race }} born on {{ patient.birth_date }}</p>
-        {% endif %}
-        <p><small>{{ patient.medical_history }}</small></p>
-        <p><small>{{ patient.description }}</small></p>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>
