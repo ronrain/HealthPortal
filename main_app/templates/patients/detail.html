@@ -29,45 +29,50 @@
   </div>
   </div>
 </section>
-
-
-    </div>
-  </div>
-</section>
-{% comment %} Existing cat-container above {% endcomment %}
-<div class="feedings-toy-container">
-  <section class="feedings">
-    <div class="subsection-title">
-      <h2>Feedings</h2>
-      <img 
-        src="{% static 'images/cat-cone.svg' %}" 
-        alt="An ice cream cone cat"
-      />
-      <img 
-        src="{% static 'images/cat-onigiri.svg' %}"
-        alt="A cat as onigiri"
-      />
-      <img 
-        src="{% static 'images/kitty-kabob.svg' %}" 
-        alt="A kabob of kittens"
-      />
-    </div>
+<section>
+<h2>Visits</h2>
     <table>
       <thead>
-        <tr><th>Date</th><th>Meal</th></tr>
+        <tr>
+          <th>Date</th>
+          <th>Visit Type</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>Diagnosis</th>
+          <th>Treatment</th>
+          <th>Again</th>
+        </tr>
       </thead>
       <tbody>
-        {% for feeding in cat.feeding_set.all %}
+        {% for visit in patient.visits_set.all %}
           <tr>
-            <td>{{feeding.date}}</td>
-            <td>{{feeding.get_meal_display}}</td>
+            <td>{{ visit.date }}</td>
+            <td>{{ visit.visit_type }}</td>
+            <td>{{ visit.height }}</td>
+            <td>{{ visit.weight }}</td>
+            <td>{{ visit.diagnosis }}</td>
+            <td>{{ visit.treatment }}</td>
+            <td>{{ visit.get_again_display }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7">No visits recorded for this patient.</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-  </section>
-</div>
-
-{% endblock %}
+  </div>
+  <h3>Add a Visit to the Doctors</h3>
+  <form
+    method="post" 
+    class="subsection-content"
+    autocomplete="off"
+  >
+    {% csrf_token %}
+    {{ visits_form.as_p }}
+    <button type="submit" class="btn submit">Add!</button>
+  </form>
+  <h3>Previous Doctors Visits</h3>
+</section>
 
 {% endblock %}
